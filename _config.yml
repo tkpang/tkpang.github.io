@@ -99,7 +99,7 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "longtaoFun",
-        href: "http://longtao.com"
+        title: "Longtao Fun",
+        href: "http://longtao.fun"
     }
 ]
