@@ -13,8 +13,8 @@ layout: default
         /* background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}') */
         {% if page.header-img %}
         background-image: url('{{ site.baseurl }}/{{ page.header-img }}');
-        {% elsif page.header-img contains 'http' %}
-            background-image: url('{{ page.header-img }}');
+        /* {% elsif page.header-img contains 'http' %}
+            background-image: url('{{ page.header-img }}'); */
         {% elsif page.header-img-url %}
             background-image: url('{{ page.header-img-url }}');
         {% elsif site.header-img %}
