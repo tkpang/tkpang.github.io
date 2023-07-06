@@ -12,7 +12,7 @@ layout: default
         position: relative;
         /* background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}') */
         {% if page.header-img %}
-            {% if page.header-img contains 'http' %}
+            {% if page.header-img contains '' %}
                 background-image: url('{{ page.header-img }}');
             {% else %}
                 background-image: url('{{ site.baseurl }}/{{ page.header-img }}');

@@ -5,7 +5,7 @@ header-img: img/post-bg-home.jpg
 email: h@hhhh.fun
 description: "Hhhh fun | Blog"
 keyword: "Hhhh, fun, Hhhh fun Blog, Programming, Technology, Life"
-url: "http://hhhh.fun"          # your host, for absolute URL
+url: "https://hhhh.fun"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 # github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
 
@@ -100,6 +100,6 @@ service-worker: true
 friends: [
     {
         title: "Longtao Fun",
-        href: "http://longtao.fun"
+        href: "https://longtao.fun"
     }
 ]
