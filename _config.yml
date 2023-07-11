@@ -99,6 +99,10 @@ service-worker: true
 # Friends
 friends: [
     {
+        title: "常用AI网址直达",
+        href: "https://hhhh.fun/2023/07/11/%E6%94%B6%E8%97%8F%E5%90%91%E5%B8%B8%E7%94%A8AI%E7%9B%B8%E5%85%B3%E7%BD%91%E5%9D%80/"
+    },
+    {
         title: "Longtao Fun",
         href: "https://longtao.fun"
     }
