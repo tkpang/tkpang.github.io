@@ -5,15 +5,10 @@ description: "5000年文明史交互式时空图"
 header-img: "img/post-bg-home.jpg"
 ---
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/history-timeline.css">
-</head>
-<body>
-    <div class="timeline-container">
+<!-- 引入样式 -->
+<link rel="stylesheet" href="{{ site.baseurl }}/css/history-timeline.css">
+
+<div class="timeline-container">
         <!-- 控制面板 -->
         <div class="timeline-controls">
             <div class="control-group">
@@ -116,7 +111,6 @@ header-img: "img/post-bg-home.jpg"
         </div>
     </div>
 
-    <script src="{{ site.baseurl }}/js/history-data.js"></script>
-    <script src="{{ site.baseurl }}/js/history-timeline.js"></script>
-</body>
-</html>
+<!-- 引入JavaScript -->
+<script src="{{ site.baseurl }}/js/history-data.js"></script>
+<script src="{{ site.baseurl }}/js/history-timeline.js"></script>
