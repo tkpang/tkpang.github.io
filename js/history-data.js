@@ -1,1184 +1,237 @@
-// 世界历史文明数据
-// 时间单位：年份（负数表示公元前）
+// 世界历史文明数据 - 按照纸质版精确布局
+// 坐标系统：x为列位置(0-1000)，宽度为相对宽度
 
 const historyData = {
-    // 东亚文明
-    eastAsia: [
-        {
-            name: "夏朝",
-            region: "eastAsia",
-            startYear: -2070,
-            endYear: -1600,
-            color: "#e74c3c",
-            description: "中国第一个世袭制王朝，标志着中国进入阶级社会。",
-            events: [
-                "禹建立夏朝，开启世袭制度",
-                "太康失国，后羿代夏",
-                "少康中兴，夏朝复兴"
-            ]
-        },
-        {
-            name: "商朝",
-            region: "eastAsia",
-            startYear: -1600,
-            endYear: -1046,
-            color: "#c0392b",
-            description: "中国历史上第一个有文字记载的王朝，甲骨文出现。",
-            events: [
-                "商汤灭夏建商",
-                "盘庚迁都于殷",
-                "甲骨文成熟应用",
-                "青铜器铸造技术高度发达"
-            ]
-        },
-        {
-            name: "西周",
-            region: "eastAsia",
-            startYear: -1046,
-            endYear: -771,
-            color: "#e67e22",
-            description: "周武王灭商建周，实行分封制和井田制。",
-            events: [
-                "武王伐纣，建立周朝",
-                "周公制礼作乐",
-                "分封诸侯，宗法制度",
-                "犬戎攻破镐京"
-            ]
-        },
-        {
-            name: "春秋时期",
-            region: "eastAsia",
-            startYear: -770,
-            endYear: -476,
-            color: "#f39c12",
-            description: "诸侯争霸，百家争鸣，中国思想文化的黄金时代。",
-            events: [
-                "齐桓公首霸",
-                "孔子创立儒学",
-                "老子著《道德经》",
-                "吴越争霸"
-            ]
-        },
-        {
-            name: "战国时期",
-            region: "eastAsia",
-            startYear: -475,
-            endYear: -221,
-            color: "#d35400",
-            description: "七国争雄，商鞅变法，百家争鸣达到高峰。",
-            events: [
-                "商鞅变法",
-                "孟子、荀子发展儒学",
-                "长平之战",
-                "都江堰建成"
-            ]
-        },
-        {
-            name: "秦朝",
-            region: "eastAsia",
-            startYear: -221,
-            endYear: -206,
-            color: "#2c3e50",
-            description: "中国第一个统一的中央集权封建王朝。",
-            events: [
-                "秦始皇统一六国",
-                "统一文字、货币、度量衡",
-                "修筑万里长城",
-                "焚书坑儒"
-            ]
-        },
-        {
-            name: "西汉",
-            region: "eastAsia",
-            startYear: -206,
-            endYear: 9,
-            color: "#e74c3c",
-            description: "刘邦建立的汉朝，开创丝绸之路，独尊儒术。",
-            events: [
-                "刘邦建立汉朝",
-                "文景之治",
-                "汉武帝独尊儒术",
-                "张骞通西域，开辟丝绸之路"
-            ]
-        },
-        {
-            name: "新朝",
-            region: "eastAsia",
-            startYear: 9,
-            endYear: 23,
-            color: "#95a5a6",
-            description: "王莽篡汉建立的短暂王朝。",
-            events: [
-                "王莽改制",
-                "绿林赤眉起义"
-            ]
-        },
-        {
-            name: "东汉",
-            region: "eastAsia",
-            startYear: 25,
-            endYear: 220,
-            color: "#c0392b",
-            description: "刘秀中兴汉室，佛教传入中国。",
-            events: [
-                "光武中兴",
-                "佛教传入中国",
-                "蔡伦改进造纸术",
-                "黄巾起义"
-            ]
-        },
-        {
-            name: "三国时期",
-            region: "eastAsia",
-            startYear: 220,
-            endYear: 280,
-            color: "#34495e",
-            description: "魏蜀吴三国鼎立，英雄辈出。",
-            events: [
-                "曹丕称帝建魏",
-                "刘备建蜀汉",
-                "孙权建东吴",
-                "诸葛亮六出祁山"
-            ]
-        },
-        {
-            name: "西晋",
-            region: "eastAsia",
-            startYear: 265,
-            endYear: 316,
-            color: "#7f8c8d",
-            description: "司马炎统一三国，短暂统一后陷入八王之乱。",
-            events: [
-                "司马炎统一三国",
-                "八王之乱",
-                "永嘉之乱"
-            ]
-        },
-        {
-            name: "东晋",
-            region: "eastAsia",
-            startYear: 317,
-            endYear: 420,
-            color: "#95a5a6",
-            description: "司马睿南渡建立东晋，与北方十六国对峙。",
-            events: [
-                "司马睿建东晋",
-                "淝水之战",
-                "书圣王羲之《兰亭序》",
-                "陶渊明隐居"
-            ]
-        },
-        {
-            name: "南北朝",
-            region: "eastAsia",
-            startYear: 420,
-            endYear: 589,
-            color: "#e67e22",
-            description: "南朝四个朝代与北朝对峙，民族大融合。",
-            events: [
-                "南朝：宋齐梁陈",
-                "北朝：北魏、东魏、西魏、北齐、北周",
-                "北魏孝文帝改革",
-                "佛教大兴"
-            ]
-        },
-        {
-            name: "隋朝",
-            region: "eastAsia",
-            startYear: 581,
-            endYear: 618,
-            color: "#d35400",
-            description: "结束长期分裂，开创科举制度。",
-            events: [
-                "隋文帝统一南北",
-                "开创科举制度",
-                "修建大运河",
-                "三征高句丽失败"
-            ]
-        },
-        {
-            name: "唐朝",
-            region: "eastAsia",
-            startYear: 618,
-            endYear: 907,
-            color: "#e74c3c",
-            description: "中国历史上最强盛的朝代之一，万国来朝。",
-            events: [
-                "贞观之治",
-                "武则天称帝",
-                "开元盛世",
-                "安史之乱",
-                "唐诗繁荣"
-            ]
-        },
-        {
-            name: "五代十国",
-            region: "eastAsia",
-            startYear: 907,
-            endYear: 960,
-            color: "#7f8c8d",
-            description: "唐末至宋初的分裂时期。",
-            events: [
-                "后梁、后唐、后晋、后汉、后周",
-                "南方十国割据",
-                "赵匡胤黄袍加身"
-            ]
-        },
-        {
-            name: "北宋",
-            region: "eastAsia",
-            startYear: 960,
-            endYear: 1127,
-            color: "#3498db",
-            description: "赵匡胤建立，经济文化高度发达。",
-            events: [
-                "杯酒释兵权",
-                "王安石变法",
-                "活字印刷术发明",
-                "靖康之变"
-            ]
-        },
-        {
-            name: "南宋",
-            region: "eastAsia",
-            startYear: 1127,
-            endYear: 1279,
-            color: "#2980b9",
-            description: "偏安江南，经济文化继续发展。",
-            events: [
-                "岳飞抗金",
-                "理学兴盛",
-                "火药武器应用",
-                "蒙古灭宋"
-            ]
-        },
-        {
-            name: "元朝",
-            region: "eastAsia",
-            startYear: 1271,
-            endYear: 1368,
-            color: "#16a085",
-            description: "蒙古帝国在中国建立的王朝，疆域空前辽阔。",
-            events: [
-                "忽必烈定国号元",
-                "马可波罗游记",
-                "行省制度",
-                "红巾军起义"
-            ]
-        },
-        {
-            name: "明朝",
-            region: "eastAsia",
-            startYear: 1368,
-            endYear: 1644,
-            color: "#e74c3c",
-            description: "朱元璋建立，最后一个汉族王朝。",
-            events: [
-                "朱元璋建明",
-                "郑和下西洋",
-                "永乐盛世",
-                "戚继光抗倭",
-                "李自成攻破北京"
-            ]
-        },
-        {
-            name: "清朝",
-            region: "eastAsia",
-            startYear: 1644,
-            endYear: 1912,
-            color: "#f39c12",
-            description: "中国最后一个封建王朝，由满族建立。",
-            events: [
-                "康乾盛世",
-                "闭关锁国",
-                "鸦片战争",
-                "洋务运动",
-                "戊戌变法",
-                "辛亥革命"
-            ]
-        },
-        {
-            name: "中华民国",
-            region: "eastAsia",
-            startYear: 1912,
-            endYear: 1949,
-            color: "#3498db",
-            description: "孙中山领导辛亥革命建立的共和国。",
-            events: [
-                "辛亥革命成功",
-                "五四运动",
-                "北伐战争",
-                "抗日战争",
-                "国共内战"
-            ]
-        },
-        {
-            name: "中华人民共和国",
-            region: "eastAsia",
-            startYear: 1949,
-            endYear: 2024,
-            color: "#e74c3c",
-            description: "中国共产党领导建立的社会主义国家。",
-            events: [
-                "新中国成立",
-                "改革开放",
-                "加入WTO",
-                "港澳回归",
-                "一带一路"
-            ]
-        }
-    ],
+    // 地区列定义（从左到右）
+    columns: {
+        mesopotamia: { x: 0, name: "美索不达米亚文明", nameEn: "MESOPOTAMIA" },
+        persia: { x: 100, name: "波斯文明", nameEn: "PERSIA" },
+        southAsia: { x: 200, name: "南亚文明", nameEn: "SOUTH ASIA" },
+        mongol: { x: 350, name: "蒙古游牧文明", nameEn: "MONGOL" },
+        china: { x: 500, name: "中华文明", nameEn: "CHINA" },
+        europe: { x: 650, name: "欧洲文明", nameEn: "EUROPE" },
+        africa: { x: 800, name: "非洲文明", nameEn: "AFRICA" },
+        americas: { x: 900, name: "美洲文明", nameEn: "AMERICAS" }
+    },
 
-    // 南亚文明
-    southAsia: [
-        {
-            name: "印度河流域文明",
-            region: "southAsia",
-            startYear: -2600,
-            endYear: -1900,
-            color: "#3498db",
-            description: "世界四大古文明之一，以哈拉帕和摩亨佐达罗为代表。",
-            events: [
-                "城市规划发达",
-                "文字尚未破译",
-                "青铜器使用"
-            ]
-        },
-        {
-            name: "吠陀时期",
-            region: "southAsia",
-            startYear: -1500,
-            endYear: -500,
-            color: "#2980b9",
-            description: "雅利安人入侵印度，创作《吠陀经》，种姓制度形成。",
-            events: [
-                "雅利安人入侵",
-                "《吠陀经》形成",
-                "种姓制度建立",
-                "婆罗门教兴起"
-            ]
-        },
-        {
-            name: "列国时代",
-            region: "southAsia",
-            startYear: -600,
-            endYear: -321,
-            color: "#3498db",
-            description: "十六大国并立，佛教和耆那教诞生。",
-            events: [
-                "释迦牟尼创立佛教",
-                "大雄创立耆那教",
-                "摩揭陀国崛起"
-            ]
-        },
-        {
-            name: "孔雀王朝",
-            region: "southAsia",
-            startYear: -321,
-            endYear: -185,
-            color: "#2980b9",
-            description: "印度历史上第一个统一的大帝国。",
-            events: [
-                "旃陀罗笈多统一北印度",
-                "阿育王推广佛教",
-                "佛教传播至东南亚"
-            ]
-        },
-        {
-            name: "贵霜帝国",
-            region: "southAsia",
-            startYear: 30,
-            endYear: 375,
-            color: "#3498db",
-            description: "丝绸之路上的重要帝国，佛教艺术繁荣。",
-            events: [
-                "迦腻色迦一世在位",
-                "犍陀罗艺术繁荣",
-                "佛教大乘派兴起"
-            ]
-        },
-        {
-            name: "笈多王朝",
-            region: "southAsia",
-            startYear: 320,
-            endYear: 550,
-            color: "#2980b9",
-            description: "印度古典文化的黄金时代。",
-            events: [
-                "印度教复兴",
-                "梵语文学繁荣",
-                "数学和天文学发达",
-                "阿拉伯数字起源"
-            ]
-        },
-        {
-            name: "戒日王朝",
-            region: "southAsia",
-            startYear: 606,
-            endYear: 647,
-            color: "#3498db",
-            description: "北印度短暂统一，玄奘西游取经。",
-            events: [
-                "戒日王统一北印度",
-                "玄奘访印",
-                "那烂陀寺鼎盛"
-            ]
-        },
-        {
-            name: "德里苏丹国",
-            region: "southAsia",
-            startYear: 1206,
-            endYear: 1526,
-            color: "#2ecc71",
-            description: "穆斯林在印度建立的政权。",
-            events: [
-                "伊斯兰教传入印度",
-                "印度-伊斯兰文化融合",
-                "德里成为政治中心"
-            ]
-        },
-        {
-            name: "莫卧儿帝国",
-            region: "southAsia",
-            startYear: 1526,
-            endYear: 1857,
-            color: "#27ae60",
-            description: "印度历史上最强盛的伊斯兰王朝。",
-            events: [
-                "巴布尔建立帝国",
-                "阿克巴大帝宗教宽容",
-                "泰姬陵建成",
-                "英国东印度公司侵入"
-            ]
-        },
-        {
-            name: "英属印度",
-            region: "southAsia",
-            startYear: 1858,
-            endYear: 1947,
-            color: "#16a085",
-            description: "英国殖民统治时期。",
-            events: [
-                "印度民族大起义",
-                "甘地非暴力不合作运动",
-                "印度国大党成立"
-            ]
-        },
-        {
-            name: "印度共和国",
-            region: "southAsia",
-            startYear: 1947,
-            endYear: 2024,
-            color: "#f39c12",
-            description: "独立后的印度民主共和国。",
-            events: [
-                "印巴分治",
-                "尼赫鲁任总理",
-                "经济改革开放",
-                "成为IT大国"
-            ]
-        }
-    ],
+    // 文明数据 - 精确定义位置和大小
+    civilizations: [
+        // ========== 中华文明 ==========
+        { name: "夏", nameEn: "XIA", x: 520, w: 80, start: -2070, end: -1600, color: "#c23531", region: "china",
+          desc: "中国第一个世袭制王朝", events: ["禹建立夏朝", "启继位，世袭制开始"] },
+        { name: "商", nameEn: "SHANG", x: 520, w: 80, start: -1600, end: -1046, color: "#d48265", region: "china",
+          desc: "甲骨文出现，青铜器鼎盛", events: ["盘庚迁殷", "甲骨文成熟", "青铜器铸造发达"] },
+        { name: "西周", nameEn: "W.ZHOU", x: 520, w: 80, start: -1046, end: -771, color: "#91c7ae", region: "china",
+          desc: "分封制和礼乐制度", events: ["武王伐纣", "周公制礼作乐", "分封诸侯"] },
+        { name: "东周", nameEn: "E.ZHOU", x: 520, w: 60, start: -770, end: -256, color: "#749f83", region: "china",
+          desc: "春秋战国，百家争鸣", events: ["春秋五霸", "战国七雄", "诸子百家"] },
+        { name: "秦", nameEn: "QIN", x: 500, w: 100, start: -221, end: -206, color: "#2c3e50", region: "china",
+          desc: "中国首个统一帝国", events: ["统一六国", "统一文字度量衡", "修长城"] },
+        { name: "西汉", nameEn: "W.HAN", x: 480, w: 120, start: -206, end: 9, color: "#c23531", region: "china",
+          desc: "丝绸之路开通", events: ["刘邦建汉", "文景之治", "张骞通西域"] },
+        { name: "新", nameEn: "XIN", x: 540, w: 40, start: 9, end: 23, color: "#999", region: "china",
+          desc: "王莽篡汉", events: ["王莽改制"] },
+        { name: "东汉", nameEn: "E.HAN", x: 480, w: 120, start: 25, end: 220, color: "#c23531", region: "china",
+          desc: "造纸术改进，佛教传入", events: ["光武中兴", "蔡伦改进造纸术", "佛教传入"] },
+        { name: "三国", nameEn: "THREE KINGDOMS", x: 500, w: 100, start: 220, end: 280, color: "#61a0a8", region: "china",
+          desc: "魏蜀吴三国鼎立", events: ["曹丕称帝", "刘备建蜀", "孙权建吴"] },
+        { name: "西晋", nameEn: "W.JIN", x: 520, w: 80, start: 265, end: 316, color: "#749f83", region: "china",
+          desc: "短暂统一后八王之乱", events: ["司马炎统一", "八王之乱"] },
+        { name: "东晋", nameEn: "E.JIN", x: 540, w: 60, start: 317, end: 420, color: "#91c7ae", region: "china",
+          desc: "偏安江南", events: ["司马睿南渡", "淝水之战"] },
+        { name: "南北朝", nameEn: "N&S DYNASTIES", x: 500, w: 100, start: 420, end: 589, color: "#d48265", region: "china",
+          desc: "民族大融合", events: ["南朝四代", "北魏孝文帝改革"] },
+        { name: "隋", nameEn: "SUI", x: 500, w: 100, start: 581, end: 618, color: "#ca8622", region: "china",
+          desc: "大运河开通，科举创立", events: ["统一南北", "开科举", "修大运河"] },
+        { name: "唐", nameEn: "TANG", x: 460, w: 160, start: 618, end: 907, color: "#c23531", region: "china",
+          desc: "盛唐气象，万国来朝", events: ["贞观之治", "开元盛世", "安史之乱"] },
+        { name: "五代十国", nameEn: "FIVE DYNASTIES", x: 520, w: 80, start: 907, end: 960, color: "#999", region: "china",
+          desc: "分裂割据", events: ["后梁后唐后晋后汉后周", "十国割据"] },
+        { name: "北宋", nameEn: "N.SONG", x: 500, w: 100, start: 960, end: 1127, color: "#c23531", region: "china",
+          desc: "经济文化繁荣", events: ["杯酒释兵权", "王安石变法", "活字印刷"] },
+        { name: "辽", nameEn: "LIAO", x: 420, w: 60, start: 916, end: 1125, color: "#61a0a8", region: "china",
+          desc: "契丹建立", events: ["耶律阿保机建国"] },
+        { name: "西夏", nameEn: "W.XIA", x: 420, w: 50, start: 1038, end: 1227, color: "#749f83", region: "china",
+          desc: "党项建立", events: ["李元昊称帝"] },
+        { name: "金", nameEn: "JIN", x: 420, w: 60, start: 1115, end: 1234, color: "#ca8622", region: "china",
+          desc: "女真建立", events: ["完颜阿骨打建国", "灭北宋"] },
+        { name: "南宋", nameEn: "S.SONG", x: 520, w: 80, start: 1127, end: 1279, color: "#c23531", region: "china",
+          desc: "偏安江南", events: ["岳飞抗金", "理学兴盛"] },
+        { name: "元", nameEn: "YUAN", x: 440, w: 140, start: 1271, end: 1368, color: "#2f4554", region: "china",
+          desc: "蒙古帝国在华", events: ["忽必烈建元", "行省制度"] },
+        { name: "明", nameEn: "MING", x: 460, w: 160, start: 1368, end: 1644, color: "#c23531", region: "china",
+          desc: "郑和下西洋", events: ["朱元璋建明", "郑和下西洋", "永乐盛世"] },
+        { name: "清", nameEn: "QING", x: 440, w: 180, start: 1644, end: 1912, color: "#ca8622", region: "china",
+          desc: "康乾盛世，后遭列强入侵", events: ["康熙平三藩", "乾隆盛世", "鸦片战争"] },
+        { name: "中华民国", nameEn: "ROC", x: 500, w: 100, start: 1912, end: 1949, color: "#61a0a8", region: "china",
+          desc: "亚洲第一个共和国", events: ["辛亥革命", "北伐战争", "抗日战争"] },
+        { name: "中华人民共和国", nameEn: "PRC", x: 460, w: 160, start: 1949, end: 2024, color: "#c23531", region: "china",
+          desc: "社会主义国家", events: ["新中国成立", "改革开放", "一带一路"] },
 
-    // 西亚文明
-    westAsia: [
-        {
-            name: "苏美尔文明",
-            region: "westAsia",
-            startYear: -3500,
-            endYear: -2000,
-            color: "#2ecc71",
-            description: "人类最早的文明之一，楔形文字的发明者。",
-            events: [
-                "楔形文字发明",
-                "城邦国家出现",
-                "《吉尔伽美什史诗》",
-                "六十进制计数法"
-            ]
-        },
-        {
-            name: "古巴比伦王国",
-            region: "westAsia",
-            startYear: -1894,
-            endYear: -1595,
-            color: "#27ae60",
-            description: "汉谟拉比统治时期达到鼎盛，《汉谟拉比法典》诞生。",
-            events: [
-                "汉谟拉比统一两河流域",
-                "《汉谟拉比法典》颁布",
-                "巴比伦城繁荣"
-            ]
-        },
-        {
-            name: "亚述帝国",
-            region: "westAsia",
-            startYear: -911,
-            endYear: -609,
-            color: "#16a085",
-            description: "古代西亚军事强国。",
-            events: [
-                "铁器时代来临",
-                "征服两河流域",
-                "尼尼微图书馆建立"
-            ]
-        },
-        {
-            name: "新巴比伦王国",
-            region: "westAsia",
-            startYear: -626,
-            endYear: -539,
-            color: "#2ecc71",
-            description: "尼布甲尼撒二世时期最强盛，建造空中花园。",
-            events: [
-                "摧毁犹太王国",
-                "巴比伦空中花园",
-                "天文学发达"
-            ]
-        },
-        {
-            name: "波斯帝国（阿契美尼德）",
-            region: "westAsia",
-            startYear: -550,
-            endYear: -330,
-            color: "#27ae60",
-            description: "古代最大的帝国之一，横跨亚欧非三洲。",
-            events: [
-                "居鲁士大帝建国",
-                "大流士一世改革",
-                "波斯战争",
-                "亚历山大征服波斯"
-            ]
-        },
-        {
-            name: "塞琉古帝国",
-            region: "westAsia",
-            startYear: -312,
-            endYear: -63,
-            color: "#1abc9c",
-            description: "亚历山大帝国分裂后的希腊化王国。",
-            events: [
-                "希腊文化传播",
-                "与印度贵霜帝国交流"
-            ]
-        },
-        {
-            name: "帕提亚帝国",
-            region: "westAsia",
-            startYear: -247,
-            endYear: 224,
-            color: "#16a085",
-            description: "与罗马帝国对峙的东方强国。",
-            events: [
-                "丝绸之路中转站",
-                "与罗马长期战争"
-            ]
-        },
-        {
-            name: "萨珊波斯",
-            region: "westAsia",
-            startYear: 224,
-            endYear: 651,
-            color: "#27ae60",
-            description: "波斯帝国的最后辉煌，琐罗亚斯德教国教化。",
-            events: [
-                "与罗马/拜占庭对峙",
-                "琐罗亚斯德教繁荣",
-                "阿拉伯征服波斯"
-            ]
-        },
-        {
-            name: "阿拉伯帝国（倭马亚）",
-            region: "westAsia",
-            startYear: 661,
-            endYear: 750,
-            color: "#2ecc71",
-            description: "伊斯兰教迅速扩张时期。",
-            events: [
-                "穆阿维叶建立倭马亚王朝",
-                "征服北非和伊比利亚",
-                "大马士革为首都"
-            ]
-        },
-        {
-            name: "阿拉伯帝国（阿拔斯）",
-            region: "westAsia",
-            startYear: 750,
-            endYear: 1258,
-            color: "#27ae60",
-            description: "伊斯兰黄金时代，科学文化高度发达。",
-            events: [
-                "巴格达建都",
-                "阿拉伯数字传播",
-                "《一千零一夜》",
-                "蒙古西征灭阿拔斯"
-            ]
-        },
-        {
-            name: "奥斯曼帝国",
-            region: "westAsia",
-            startYear: 1299,
-            endYear: 1922,
-            color: "#e74c3c",
-            description: "横跨欧亚非的伊斯兰帝国。",
-            events: [
-                "攻陷君士坦丁堡",
-                "苏莱曼大帝时期",
-                "维也纳之战",
-                "一战后解体"
-            ]
-        }
-    ],
+        // ========== 波斯/西亚文明 ==========
+        { name: "苏美尔", nameEn: "SUMER", x: 20, w: 80, start: -3500, end: -2000, color: "#2ecc71", region: "westAsia",
+          desc: "人类最早文明之一", events: ["楔形文字", "城邦国家"] },
+        { name: "古巴比伦", nameEn: "BABYLON", x: 30, w: 70, start: -1894, end: -1595, color: "#27ae60", region: "westAsia",
+          desc: "汉谟拉比法典", events: ["汉谟拉比法典", "空中花园传说"] },
+        { name: "亚述", nameEn: "ASSYRIA", x: 20, w: 80, start: -911, end: -609, color: "#16a085", region: "westAsia",
+          desc: "军事强国", events: ["铁器应用", "尼尼微图书馆"] },
+        { name: "新巴比伦", nameEn: "NEO-BABYLON", x: 40, w: 60, start: -626, end: -539, color: "#27ae60", region: "westAsia",
+          desc: "空中花园", events: ["尼布甲尼撒二世", "巴比伦之囚"] },
+        { name: "波斯帝国", nameEn: "PERSIAN EMPIRE", x: 10, w: 120, start: -550, end: -330, color: "#2ecc71", region: "westAsia",
+          desc: "横跨亚欧非的大帝国", events: ["居鲁士大帝", "大流士改革", "波斯战争"] },
+        { name: "塞琉古", nameEn: "SELEUCID", x: 40, w: 60, start: -312, end: -63, color: "#1abc9c", region: "westAsia",
+          desc: "希腊化王国", events: ["亚历山大遗产"] },
+        { name: "帕提亚", nameEn: "PARTHIA", x: 30, w: 80, start: -247, end: 224, color: "#16a085", region: "westAsia",
+          desc: "丝路中转站", events: ["与罗马对峙"] },
+        { name: "萨珊波斯", nameEn: "SASSANID", x: 20, w: 100, start: 224, end: 651, color: "#27ae60", region: "westAsia",
+          desc: "波斯最后辉煌", events: ["琐罗亚斯德教", "与罗马战争"] },
+        { name: "倭马亚王朝", nameEn: "UMAYYAD", x: 30, w: 80, start: 661, end: 750, color: "#2ecc71", region: "westAsia",
+          desc: "伊斯兰扩张", events: ["大马士革为都", "征服北非"] },
+        { name: "阿拔斯王朝", nameEn: "ABBASID", x: 20, w: 100, start: 750, end: 1258, color: "#27ae60", region: "westAsia",
+          desc: "伊斯兰黄金时代", events: ["巴格达为都", "阿拉伯数字"] },
+        { name: "塞尔柱帝国", nameEn: "SELJUK", x: 40, w: 70, start: 1037, end: 1194, color: "#16a085", region: "westAsia",
+          desc: "突厥帝国", events: ["曼齐刻尔特战役"] },
+        { name: "伊尔汗国", nameEn: "ILKHANATE", x: 30, w: 80, start: 1256, end: 1335, color: "#1abc9c", region: "westAsia",
+          desc: "蒙古西征建立", events: ["旭烈兀建立"] },
+        { name: "帖木儿帝国", nameEn: "TIMURID", x: 40, w: 70, start: 1370, end: 1507, color: "#2ecc71", region: "westAsia",
+          desc: "帖木儿征服", events: ["撒马尔罕为都"] },
+        { name: "萨法维王朝", nameEn: "SAFAVID", x: 20, w: 100, start: 1501, end: 1736, color: "#27ae60", region: "westAsia",
+          desc: "什叶派伊朗", events: ["伊斯法罕为都", "什叶派国教"] },
+        { name: "奥斯曼帝国", nameEn: "OTTOMAN", x: 100, w: 100, start: 1299, end: 1922, color: "#e74c3c", region: "westAsia",
+          desc: "横跨三洲的帝国", events: ["攻陷君士坦丁堡", "苏莱曼大帝"] },
+        { name: "恺加王朝", nameEn: "QAJAR", x: 40, w: 60, start: 1789, end: 1925, color: "#16a085", region: "westAsia",
+          desc: "近代伊朗", events: ["德黑兰为都"] },
+        { name: "巴列维王朝", nameEn: "PAHLAVI", x: 50, w: 50, start: 1925, end: 1979, color: "#2ecc71", region: "westAsia",
+          desc: "伊朗现代化", events: ["白色革命"] },
+        { name: "伊朗", nameEn: "IRAN", x: 50, w: 50, start: 1979, end: 2024, color: "#27ae60", region: "westAsia",
+          desc: "伊斯兰共和国", events: ["伊斯兰革命"] },
 
-    // 欧洲文明
-    europe: [
-        {
-            name: "古希腊文明",
-            region: "europe",
-            startYear: -800,
-            endYear: -146,
-            color: "#f39c12",
-            description: "西方文明的摇篮，民主制度和哲学的诞生地。",
-            events: [
-                "雅典民主制",
-                "苏格拉底、柏拉图、亚里士多德",
-                "希波战争",
-                "伯罗奔尼撒战争",
-                "亚历山大东征"
-            ]
-        },
-        {
-            name: "罗马共和国",
-            region: "europe",
-            startYear: -509,
-            endYear: -27,
-            color: "#e67e22",
-            description: "从城邦到统一地中海的共和国。",
-            events: [
-                "十二铜表法",
-                "布匿战争",
-                "恺撒崛起",
-                "屋大维建立元首制"
-            ]
-        },
-        {
-            name: "罗马帝国",
-            region: "europe",
-            startYear: -27,
-            endYear: 476,
-            color: "#d35400",
-            description: "地中海霸主，西方古典文明的巅峰。",
-            events: [
-                "奥古斯都和平时期",
-                "基督教诞生并传播",
-                "戴克里先改革",
-                "帝国东西分裂",
-                "西罗马帝国灭亡"
-            ]
-        },
-        {
-            name: "拜占庭帝国",
-            region: "europe",
-            startYear: 395,
-            endYear: 1453,
-            color: "#9b59b6",
-            description: "东罗马帝国，保存了古典文明。",
-            events: [
-                "查士丁尼大帝",
-                "《查士丁尼法典》",
-                "希腊火发明",
-                "圣像破坏运动",
-                "奥斯曼攻陷君士坦丁堡"
-            ]
-        },
-        {
-            name: "法兰克王国",
-            region: "europe",
-            startYear: 481,
-            endYear: 843,
-            color: "#3498db",
-            description: "西欧封建制度的起源。",
-            events: [
-                "克洛维皈依基督教",
-                "查理曼加冕",
-                "《凡尔登条约》三分王国"
-            ]
-        },
-        {
-            name: "神圣罗马帝国",
-            region: "europe",
-            startYear: 962,
-            endYear: 1806,
-            color: "#2980b9",
-            description: "德意志民族的神圣罗马帝国。",
-            events: [
-                "奥托一世加冕",
-                "教权与皇权之争",
-                "三十年战争",
-                "拿破仑解散帝国"
-            ]
-        },
-        {
-            name: "中世纪欧洲",
-            region: "europe",
-            startYear: 500,
-            endYear: 1500,
-            color: "#7f8c8d",
-            description: "封建制度主导的时期。",
-            events: [
-                "封建庄园制度",
-                "十字军东征",
-                "黑死病",
-                "百年战争",
-                "文艺复兴开始"
-            ]
-        },
-        {
-            name: "文艺复兴",
-            region: "europe",
-            startYear: 1400,
-            endYear: 1600,
-            color: "#e67e22",
-            description: "欧洲文化艺术的复兴运动。",
-            events: [
-                "但丁、达芬奇、米开朗基罗",
-                "人文主义兴起",
-                "古腾堡印刷术",
-                "哥伦布发现新大陆"
-            ]
-        },
-        {
-            name: "宗教改革",
-            region: "europe",
-            startYear: 1517,
-            endYear: 1648,
-            color: "#34495e",
-            description: "马丁路德发起的宗教改革运动。",
-            events: [
-                "路德发表《九十五条论纲》",
-                "新教诞生",
-                "三十年战争",
-                "《威斯特伐利亚和约》"
-            ]
-        },
-        {
-            name: "启蒙时代",
-            region: "europe",
-            startYear: 1650,
-            endYear: 1800,
-            color: "#f39c12",
-            description: "理性主义和科学革命时期。",
-            events: [
-                "牛顿力学",
-                "伏尔泰、卢梭、孟德斯鸠",
-                "百科全书派",
-                "科学革命"
-            ]
-        },
-        {
-            name: "法国大革命",
-            region: "europe",
-            startYear: 1789,
-            endYear: 1799,
-            color: "#3498db",
-            description: "推翻封建君主制的资产阶级革命。",
-            events: [
-                "攻占巴士底狱",
-                "《人权宣言》",
-                "雅各宾派专政",
-                "拿破仑上台"
-            ]
-        },
-        {
-            name: "工业革命",
-            region: "europe",
-            startYear: 1760,
-            endYear: 1840,
-            color: "#95a5a6",
-            description: "从农业社会到工业社会的转变。",
-            events: [
-                "蒸汽机发明",
-                "纺织业革新",
-                "铁路兴建",
-                "工业资本主义兴起"
-            ]
-        },
-        {
-            name: "维也纳体系",
-            region: "europe",
-            startYear: 1815,
-            endYear: 1914,
-            color: "#7f8c8d",
-            description: "拿破仑战争后的欧洲秩序。",
-            events: [
-                "维也纳会议",
-                "民族主义兴起",
-                "德意志统一",
-                "意大利统一"
-            ]
-        },
-        {
-            name: "第一次世界大战",
-            region: "europe",
-            startYear: 1914,
-            endYear: 1918,
-            color: "#e74c3c",
-            description: "人类历史上第一次世界大战。",
-            events: [
-                "萨拉热窝事件",
-                "堑壕战",
-                "俄国十月革命",
-                "《凡尔赛条约》"
-            ]
-        },
-        {
-            name: "两战之间",
-            region: "europe",
-            startYear: 1918,
-            endYear: 1939,
-            color: "#95a5a6",
-            description: "一战和二战之间的动荡时期。",
-            events: [
-                "国际联盟成立",
-                "经济大萧条",
-                "法西斯主义兴起",
-                "西班牙内战"
-            ]
-        },
-        {
-            name: "第二次世界大战",
-            region: "europe",
-            startYear: 1939,
-            endYear: 1945,
-            color: "#c0392b",
-            description: "人类历史上最惨烈的战争。",
-            events: [
-                "德国闪击波兰",
-                "法国沦陷",
-                "不列颠空战",
-                "斯大林格勒战役",
-                "诺曼底登陆",
-                "德国投降"
-            ]
-        },
-        {
-            name: "冷战时期",
-            region: "europe",
-            startYear: 1947,
-            endYear: 1991,
-            color: "#34495e",
-            description: "美苏两极对峙时期。",
-            events: [
-                "铁幕演说",
-                "北约与华约",
-                "柏林墙",
-                "欧洲一体化",
-                "苏联解体"
-            ]
-        },
-        {
-            name: "现代欧洲",
-            region: "europe",
-            startYear: 1991,
-            endYear: 2024,
-            color: "#3498db",
-            description: "欧盟成立后的欧洲。",
-            events: [
-                "欧盟成立",
-                "欧元诞生",
-                "东欧国家加入欧盟",
-                "英国脱欧"
-            ]
-        }
-    ],
+        // ========== 南亚文明 ==========
+        { name: "印度河文明", nameEn: "INDUS", x: 220, w: 80, start: -2600, end: -1900, color: "#3498db", region: "southAsia",
+          desc: "四大古文明之一", events: ["哈拉帕文明", "摩亨佐达罗"] },
+        { name: "吠陀时代", nameEn: "VEDIC", x: 230, w: 70, start: -1500, end: -500, color: "#2980b9", region: "southAsia",
+          desc: "雅利安人时代", events: ["吠陀经典", "种姓制度"] },
+        { name: "孔雀王朝", nameEn: "MAURYA", x: 220, w: 80, start: -321, end: -185, color: "#3498db", region: "southAsia",
+          desc: "印度首个统一帝国", events: ["阿育王", "佛教传播"] },
+        { name: "贵霜帝国", nameEn: "KUSHAN", x: 230, w: 70, start: 30, end: 375, color: "#2980b9", region: "southAsia",
+          desc: "丝路重镇", events: ["犍陀罗艺术", "佛教大乘"] },
+        { name: "笈多王朝", nameEn: "GUPTA", x: 220, w: 80, start: 320, end: 550, color: "#3498db", region: "southAsia",
+          desc: "印度古典黄金时代", events: ["印度教复兴", "阿拉伯数字起源"] },
+        { name: "戒日王朝", nameEn: "HARSHA", x: 240, w: 50, start: 606, end: 647, color: "#2980b9", region: "southAsia",
+          desc: "玄奘西游目的地", events: ["玄奘访印"] },
+        { name: "德里苏丹国", nameEn: "DELHI SULTANATE", x: 220, w: 80, start: 1206, end: 1526, color: "#1abc9c", region: "southAsia",
+          desc: "伊斯兰统治印度", events: ["德里为都", "印度伊斯兰文化"] },
+        { name: "莫卧儿帝国", nameEn: "MUGHAL", x: 200, w: 120, start: 1526, end: 1857, color: "#16a085", region: "southAsia",
+          desc: "印度最强盛的伊斯兰帝国", events: ["泰姬陵", "阿克巴大帝"] },
+        { name: "英属印度", nameEn: "BRITISH INDIA", x: 220, w: 80, start: 1858, end: 1947, color: "#95a5a6", region: "southAsia",
+          desc: "英国殖民统治", events: ["东印度公司", "甘地运动"] },
+        { name: "印度", nameEn: "INDIA", x: 220, w: 80, start: 1947, end: 2024, color: "#f39c12", region: "southAsia",
+          desc: "世界最大民主国家", events: ["印巴分治", "IT强国"] },
 
-    // 非洲文明
-    africa: [
-        {
-            name: "古埃及文明",
-            region: "africa",
-            startYear: -3100,
-            endYear: -30,
-            color: "#9b59b6",
-            description: "世界最古老文明之一，金字塔和法老统治。",
-            events: [
-                "上下埃及统一",
-                "金字塔建造",
-                "象形文字",
-                "图坦卡蒙",
-                "克利奥帕特拉七世",
-                "罗马吞并埃及"
-            ]
-        },
-        {
-            name: "库什王国",
-            region: "africa",
-            startYear: -1070,
-            endYear: 350,
-            color: "#8e44ad",
-            description: "努比亚地区的强大王国。",
-            events: [
-                "征服埃及建立第25王朝",
-                "麦罗埃文化繁荣"
-            ]
-        },
-        {
-            name: "迦太基",
-            region: "africa",
-            startYear: -814,
-            endYear: -146,
-            color: "#9b59b6",
-            description: "北非腓尼基人建立的海洋强国。",
-            events: [
-                "汉尼拔远征罗马",
-                "布匿战争",
-                "罗马摧毁迦太基"
-            ]
-        },
-        {
-            name: "阿克苏姆王国",
-            region: "africa",
-            startYear: 100,
-            endYear: 940,
-            color: "#8e44ad",
-            description: "东非埃塞俄比亚地区的古国。",
-            events: [
-                "皈依基督教",
-                "与罗马、波斯贸易",
-                "方尖碑文化"
-            ]
-        },
-        {
-            name: "加纳帝国",
-            region: "africa",
-            startYear: 700,
-            endYear: 1240,
-            color: "#9b59b6",
-            description: "西非第一个黑人帝国。",
-            events: [
-                "黄金贸易繁荣",
-                "伊斯兰教传入",
-                "跨撒哈拉贸易"
-            ]
-        },
-        {
-            name: "马里帝国",
-            region: "africa",
-            startYear: 1235,
-            endYear: 1600,
-            color: "#8e44ad",
-            description: "西非最富有的帝国。",
-            events: [
-                "曼萨穆萨朝圣",
-                "廷巴克图文化中心",
-                "黄金和盐贸易"
-            ]
-        },
-        {
-            name: "桑海帝国",
-            region: "africa",
-            startYear: 1464,
-            endYear: 1591,
-            color: "#9b59b6",
-            description: "西非最后的大帝国。",
-            events: [
-                "索尼阿里扩张",
-                "廷巴克图鼎盛",
-                "摩洛哥入侵"
-            ]
-        },
-        {
-            name: "殖民时期",
-            region: "africa",
-            startYear: 1880,
-            endYear: 1960,
-            color: "#7f8c8d",
-            description: "欧洲列强瓜分非洲。",
-            events: [
-                "柏林会议瓜分非洲",
-                "殖民地经济掠夺",
-                "反殖民斗争"
-            ]
-        },
-        {
-            name: "独立浪潮",
-            region: "africa",
-            startYear: 1960,
-            endYear: 2024,
-            color: "#2ecc71",
-            description: "非洲国家纷纷独立。",
-            events: [
-                "非洲独立年（1960）",
-                "曼德拉与种族隔离斗争",
-                "非洲联盟成立",
-                "经济发展挑战"
-            ]
-        }
-    ],
+        // ========== 欧洲文明 ==========
+        { name: "古希腊", nameEn: "ANCIENT GREECE", x: 660, w: 80, start: -800, end: -146, color: "#f39c12", region: "europe",
+          desc: "西方文明摇篮", events: ["雅典民主", "苏格拉底柏拉图亚里士多德"] },
+        { name: "罗马共和国", nameEn: "ROMAN REPUBLIC", x: 650, w: 100, start: -509, end: -27, color: "#e67e22", region: "europe",
+          desc: "共和制典范", events: ["十二铜表法", "布匿战争"] },
+        { name: "罗马帝国", nameEn: "ROMAN EMPIRE", x: 640, w: 120, start: -27, end: 476, color: "#d35400", region: "europe",
+          desc: "地中海霸主", events: ["奥古斯都", "基督教传播", "帝国分裂"] },
+        { name: "拜占庭帝国", nameEn: "BYZANTINE", x: 680, w: 80, start: 395, end: 1453, color: "#9b59b6", region: "europe",
+          desc: "东罗马帝国", events: ["查士丁尼", "君士坦丁堡陷落"] },
+        { name: "法兰克王国", nameEn: "FRANKISH", x: 650, w: 70, start: 481, end: 843, color: "#3498db", region: "europe",
+          desc: "西欧封建起源", events: ["查理曼大帝", "凡尔登条约"] },
+        { name: "神圣罗马帝国", nameEn: "HRE", x: 660, w: 80, start: 962, end: 1806, color: "#e67e22", region: "europe",
+          desc: "德意志神圣罗马帝国", events: ["奥托一世", "三十年战争"] },
+        { name: "英格兰", nameEn: "ENGLAND", x: 750, w: 60, start: 927, end: 1707, color: "#3498db", region: "europe",
+          desc: "不列颠岛国", events: ["诺曼征服", "大宪章", "百年战争"] },
+        { name: "法兰西王国", nameEn: "FRANCE", x: 680, w: 70, start: 843, end: 1792, color: "#2980b9", region: "europe",
+          desc: "欧洲大陆强国", events: ["百年战争", "路易十四"] },
+        { name: "西班牙帝国", nameEn: "SPANISH EMPIRE", x: 640, w: 90, start: 1492, end: 1898, color: "#f39c12", region: "europe",
+          desc: "日不落帝国先驱", events: ["哥伦布发现新大陆", "无敌舰队"] },
+        { name: "大英帝国", nameEn: "BRITISH EMPIRE", x: 720, w: 100, start: 1707, end: 1997, color: "#e74c3c", region: "europe",
+          desc: "日不落帝国", events: ["工业革命", "维多利亚时代"] },
+        { name: "法兰西共和国", nameEn: "FRANCE", x: 680, w: 70, start: 1792, end: 2024, color: "#3498db", region: "europe",
+          desc: "共和国", events: ["法国大革命", "拿破仑", "欧盟创始国"] },
+        { name: "德意志帝国", nameEn: "GERMAN EMPIRE", x: 660, w: 80, start: 1871, end: 1918, color: "#7f8c8d", region: "europe",
+          desc: "普鲁士统一德国", events: ["俾斯麦统一", "一战"] },
+        { name: "苏联", nameEn: "USSR", x: 760, w: 70, start: 1922, end: 1991, color: "#c0392b", region: "europe",
+          desc: "第一个社会主义国家", events: ["十月革命", "二战", "冷战"] },
+        { name: "德国", nameEn: "GERMANY", x: 660, w: 80, start: 1990, end: 2024, color: "#2c3e50", region: "europe",
+          desc: "统一后的德国", events: ["柏林墙倒塌", "欧盟核心"] },
+        { name: "俄罗斯", nameEn: "RUSSIA", x: 760, w: 70, start: 1991, end: 2024, color: "#3498db", region: "europe",
+          desc: "俄罗斯联邦", events: ["苏联解体", "普京时代"] },
 
-    // 美洲文明
-    americas: [
-        {
-            name: "奥尔梅克文明",
-            region: "americas",
-            startYear: -1200,
-            endYear: -400,
-            color: "#1abc9c",
-            description: "中美洲最早的文明，玛雅文明的前身。",
-            events: [
-                "巨石头像雕刻",
-                "历法和文字起源",
-                "橡胶球游戏"
-            ]
-        },
-        {
-            name: "玛雅文明",
-            region: "americas",
-            startYear: -2000,
-            endYear: 1500,
-            color: "#16a085",
-            description: "中美洲高度发达的文明，天文历法精确。",
-            events: [
-                "象形文字系统",
-                "玛雅历法",
-                "金字塔建筑",
-                "城邦制度",
-                "神秘消失"
-            ]
-        },
-        {
-            name: "特奥蒂瓦坎",
-            region: "americas",
-            startYear: 100,
-            endYear: 750,
-            color: "#1abc9c",
-            description: "墨西哥古城，太阳金字塔所在地。",
-            events: [
-                "太阳金字塔",
-                "月亮金字塔",
-                "羽蛇神崇拜"
-            ]
-        },
-        {
-            name: "托尔特克文明",
-            region: "americas",
-            startYear: 900,
-            endYear: 1168,
-            color: "#16a085",
-            description: "墨西哥中部的军事文明。",
-            events: [
-                "图拉城繁荣",
-                "武士文化",
-                "影响阿兹特克"
-            ]
-        },
-        {
-            name: "阿兹特克帝国",
-            region: "americas",
-            startYear: 1345,
-            endYear: 1521,
-            color: "#1abc9c",
-            description: "墨西哥最强大的帝国，以活人祭祀闻名。",
-            events: [
-                "特诺奇蒂特兰建城",
-                "三国同盟",
-                "活人祭祀仪式",
-                "科尔特斯征服"
-            ]
-        },
-        {
-            name: "印加帝国",
-            region: "americas",
-            startYear: 1438,
-            endYear: 1533,
-            color: "#16a085",
-            description: "南美洲最大的帝国，以精湛石工技艺闻名。",
-            events: [
-                "库斯科为首都",
-                "马丘比丘建造",
-                "结绳记事",
-                "精密石工",
-                "皮萨罗征服"
-            ]
-        },
-        {
-            name: "殖民时期",
-            region: "americas",
-            startYear: 1492,
-            endYear: 1810,
-            color: "#95a5a6",
-            description: "欧洲殖民者统治美洲。",
-            events: [
-                "哥伦布发现新大陆",
-                "西班牙征服者",
-                "黑奴贸易",
-                "殖民地经济"
-            ]
-        },
-        {
-            name: "拉美独立运动",
-            region: "americas",
-            startYear: 1810,
-            endYear: 1830,
-            color: "#3498db",
-            description: "拉丁美洲国家独立运动。",
-            events: [
-                "玻利瓦尔解放运动",
-                "圣马丁远征",
-                "墨西哥独立",
-                "巴西独立"
-            ]
-        },
-        {
-            name: "美国独立与发展",
-            region: "americas",
-            startYear: 1776,
-            endYear: 2024,
-            color: "#3498db",
-            description: "美利坚合众国的诞生与崛起。",
-            events: [
-                "美国独立战争",
-                "《独立宣言》",
-                "南北战争",
-                "西进运动",
-                "两次世界大战",
-                "冷战",
-                "超级大国"
-            ]
-        },
-        {
-            name: "现代拉丁美洲",
-            region: "americas",
-            startYear: 1900,
-            endYear: 2024,
-            color: "#2ecc71",
-            description: "独立后的拉美国家发展。",
-            events: [
-                "墨西哥革命",
-                "古巴革命",
-                "军政府时期",
-                "民主化进程",
-                "经济一体化"
-            ]
-        }
+        // ========== 非洲文明 ==========
+        { name: "古埃及", nameEn: "ANCIENT EGYPT", x: 820, w: 80, start: -3100, end: -30, color: "#9b59b6", region: "africa",
+          desc: "尼罗河文明", events: ["金字塔", "法老统治", "象形文字"] },
+        { name: "库什王国", nameEn: "KUSH", x: 830, w: 50, start: -1070, end: 350, color: "#8e44ad", region: "africa",
+          desc: "努比亚王国", events: ["麦罗埃文化"] },
+        { name: "迦太基", nameEn: "CARTHAGE", x: 810, w: 60, start: -814, end: -146, color: "#9b59b6", region: "africa",
+          desc: "腓尼基殖民地", events: ["汉尼拔", "布匿战争"] },
+        { name: "阿克苏姆", nameEn: "AKSUM", x: 830, w: 50, start: 100, end: 940, color: "#8e44ad", region: "africa",
+          desc: "埃塞俄比亚古国", events: ["基督教国家"] },
+        { name: "加纳帝国", nameEn: "GHANA", x: 810, w: 60, start: 700, end: 1240, color: "#9b59b6", region: "africa",
+          desc: "西非黄金帝国", events: ["跨撒哈拉贸易"] },
+        { name: "马里帝国", nameEn: "MALI", x: 810, w: 70, start: 1235, end: 1600, color: "#8e44ad", region: "africa",
+          desc: "西非最富有帝国", events: ["曼萨穆萨朝圣", "廷巴克图"] },
+        { name: "桑海帝国", nameEn: "SONGHAI", x: 820, w: 60, start: 1464, end: 1591, color: "#9b59b6", region: "africa",
+          desc: "西非最后大帝国", events: ["索尼阿里"] },
+        { name: "埃及", nameEn: "EGYPT", x: 820, w: 60, start: 1953, end: 2024, color: "#8e44ad", region: "africa",
+          desc: "现代埃及", events: ["纳赛尔革命", "苏伊士运河"] },
+
+        // ========== 美洲文明 ==========
+        { name: "奥尔梅克", nameEn: "OLMEC", x: 920, w: 50, start: -1500, end: -400, color: "#1abc9c", region: "americas",
+          desc: "中美洲母文明", events: ["巨石头像"] },
+        { name: "玛雅", nameEn: "MAYA", x: 910, w: 70, start: -2000, end: 1500, color: "#16a085", region: "americas",
+          desc: "中美洲古典文明", events: ["玛雅历法", "金字塔神庙"] },
+        { name: "特奥蒂瓦坎", nameEn: "TEOTIHUACAN", x: 920, w: 50, start: 100, end: 750, color: "#1abc9c", region: "americas",
+          desc: "众神之城", events: ["太阳金字塔", "月亮金字塔"] },
+        { name: "阿兹特克", nameEn: "AZTEC", x: 910, w: 60, start: 1345, end: 1521, color: "#16a085", region: "americas",
+          desc: "墨西哥帝国", events: ["特诺奇蒂特兰", "活人祭祀"] },
+        { name: "印加", nameEn: "INCA", x: 920, w: 50, start: 1438, end: 1533, color: "#1abc9c", region: "americas",
+          desc: "南美安第斯帝国", events: ["马丘比丘", "结绳记事"] },
+        { name: "美国", nameEn: "USA", x: 900, w: 80, start: 1776, end: 2024, color: "#3498db", region: "americas",
+          desc: "世界超级大国", events: ["独立宣言", "南北战争", "两次世界大战", "冷战胜利"] },
+        { name: "墨西哥", nameEn: "MEXICO", x: 920, w: 50, start: 1821, end: 2024, color: "#27ae60", region: "americas",
+          desc: "拉美大国", events: ["独立", "墨西哥革命"] },
+        { name: "巴西", nameEn: "BRAZIL", x: 940, w: 50, start: 1822, end: 2024, color: "#f1c40f", region: "americas",
+          desc: "南美最大国家", events: ["独立", "经济起飞"] },
+
+        // ========== 蒙古游牧 ==========
+        { name: "匈奴", nameEn: "XIONGNU", x: 360, w: 70, start: -209, end: 93, color: "#795548", region: "mongol",
+          desc: "北方草原帝国", events: ["冒顿单于", "白登之围"] },
+        { name: "鲜卑", nameEn: "XIANBEI", x: 370, w: 50, start: 93, end: 234, color: "#8d6e63", region: "mongol",
+          desc: "继匈奴而起", events: ["建立北魏"] },
+        { name: "柔然", nameEn: "ROURAN", x: 370, w: 50, start: 330, end: 555, color: "#a1887f", region: "mongol",
+          desc: "草原霸主", events: ["与北魏对峙"] },
+        { name: "突厥汗国", nameEn: "TURKIC KHAGANATE", x: 350, w: 80, start: 552, end: 744, color: "#795548", region: "mongol",
+          desc: "突厥帝国", events: ["控制丝路"] },
+        { name: "回鹘", nameEn: "UYGHUR", x: 370, w: 50, start: 744, end: 840, color: "#8d6e63", region: "mongol",
+          desc: "回鹘汗国", events: ["安史之乱助唐"] },
+        { name: "蒙古帝国", nameEn: "MONGOL EMPIRE", x: 320, w: 140, start: 1206, end: 1368, color: "#2c3e50", region: "mongol",
+          desc: "人类历史最大陆地帝国", events: ["成吉思汗", "西征", "四大汗国"] },
+        { name: "蒙古", nameEn: "MONGOLIA", x: 370, w: 50, start: 1911, end: 2024, color: "#3498db", region: "mongol",
+          desc: "现代蒙古国", events: ["独立", "民主化"] }
     ]
 };
 
 // 地区颜色映射
 const regionColors = {
-    eastAsia: "#e74c3c",
+    china: "#c23531",
     southAsia: "#3498db",
     westAsia: "#2ecc71",
     europe: "#f39c12",
     africa: "#9b59b6",
-    americas: "#1abc9c"
+    americas: "#1abc9c",
+    mongol: "#795548"
 };
 
 // 地区中文名称
 const regionNames = {
-    eastAsia: "东亚",
-    southAsia: "南亚",
-    westAsia: "西亚",
-    europe: "欧洲",
-    africa: "非洲",
-    americas: "美洲"
+    china: "中华文明",
+    southAsia: "南亚文明",
+    westAsia: "西亚/波斯文明",
+    europe: "欧洲文明",
+    africa: "非洲文明",
+    americas: "美洲文明",
+    mongol: "蒙古游牧文明"
 };
