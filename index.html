@@ -1,42 +1,127 @@
 ---
 layout: page
-description: "Hhhh, it's fun!"
+description: "作品展示 | 创作记录"
 ---
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
-{% endfor %}
+<!-- 引入作品集样式 -->
+<link rel="stylesheet" href="{{ '/css/works.css' | prepend: site.baseurl }}">
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>TK Works</h1>
+        <h2 style="font-size: 28px; margin: 20px 0; opacity: 0.95; font-weight: 600;">HHHH, it's FUN!</h2>
+        <p style="font-size: 18px; margin-bottom: 12px;">精彩作品 | 创作记录 | 不断更新</p>
+        <p style="font-size: 16px; opacity: 0.9; margin-bottom: 32px;">访问 <strong>hhhh.fun</strong> 探索更多精彩内容</p>
+        <a href="/works/" class="btn btn-lg btn-default">查看所有作品</a>
+    </div>
+</section>
+
+<!-- Featured Works Section -->
+<section class="featured-works">
+    <div class="container">
+        <h2>精选作品</h2>
+        <div class="featured-works-grid">
+            <!-- 获取所有featured作品 -->
+            {% assign all_works = "" | split: "" %}
+            {% for actor in site.actors %}
+                {% if actor.featured %}
+                    {% assign all_works = all_works | push: actor %}
+                {% endif %}
+            {% endfor %}
+            {% for drama in site.dramas %}
+                {% if drama.featured %}
+                    {% assign all_works = all_works | push: drama %}
+                {% endif %}
+            {% endfor %}
+            {% for video in site.videos %}
+                {% if video.featured %}
+                    {% assign all_works = all_works | push: video %}
+                {% endif %}
+            {% endfor %}
+
+            <!-- 显示featured作品（最多6个） -->
+            {% for work in all_works limit:6 %}
+            <div class="work-card fade-in">
+                <div class="work-card-header category-{{ work.category }}">
+                    <img src="{{ work.cover }}" alt="{{ work.title }}" class="work-card-image" loading="lazy">
+                    <div class="work-card-overlay">
+                        <a href="{{ work.url }}" class="work-card-link">查看详情</a>
+                    </div>
+                    <span class="work-category-badge category-{{ work.category }}">
+                        {% if work.category == 'actor' %}演员
+                        {% elsif work.category == 'drama' %}短剧
+                        {% elsif work.category == 'video' %}短视频
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="work-card-body">
+                    <h3 class="work-card-title">{{ work.title }}</h3>
+                    <p class="work-card-description">{{ work.description }}</p>
+                    <div class="work-card-meta">
+                        {% if work.category == 'actor' and work.hometown %}
+                            <span class="meta-badge">{{ work.hometown }}</span>
+                        {% elsif work.category == 'drama' and work.episode_count %}
+                            <span class="meta-badge">{{ work.episode_count }}集</span>
+                        {% elsif work.category == 'video' and work.duration %}
+                            <span class="meta-badge">{{ work.duration }}秒</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- 如果没有featured作品，显示提示 -->
+            {% if all_works.size == 0 %}
+            <div class="col-lg-12">
+                <p style="text-align: center; color: #666; padding: 40px 0;">
+                    暂无作品展示，敬请期待...
+                </p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div style="text-align: center; margin-top: 32px;">
+            <a href="/works/" class="btn btn-primary btn-lg">查看更多作品 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Posts Section -->
+<section style="padding: 60px 0; background: #ffffff;">
+    <div class="container">
+        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 40px; color: #1f2937;">
+            最新更新
+        </h2>
+
+        <!-- 文章列表 -->
+        {% for post in site.posts limit:5 %}
+        <div class="post-preview">
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                <h3 class="post-title" style="font-size: 24px; margin-bottom: 8px;">
+                    {{ post.title }}
+                </h3>
+                {% if post.subtitle %}
+                <h4 class="post-subtitle" style="font-size: 18px; color: #6b7280; margin-bottom: 12px;">
+                    {{ post.subtitle }}
+                </h4>
+                {% endif %}
+                <div class="post-content-preview" style="color: #6b7280; line-height: 1.6;">
+                    {{ post.content | strip_html | truncate:200 }}
+                </div>
+            </a>
+            <p class="post-meta" style="margin-top: 12px; color: #9ca3af;">
+                发布于 {{ post.date | date: "%Y年%m月%d日" }}
+                {% if post.author %} · 作者: {{ post.author }}{% endif %}
+            </p>
+        </div>
+        <hr>
+        {% endfor %}
+
+        <div style="text-align: center; margin-top: 32px;">
+            <a href="/blog.html" class="btn btn-default btn-lg">查看所有文章 →</a>
+        </div>
+    </div>
+</section>
+
+<script src="{{ '/js/works.js' | prepend: site.baseurl }}"></script>

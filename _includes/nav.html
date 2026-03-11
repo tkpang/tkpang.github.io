@@ -17,13 +17,17 @@
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ site.baseurl }}/">Home</a>
+                        <a href="{{ site.baseurl }}/">首页</a>
                     </li>
-                    {% for page in site.pages %}{% if page.title %}
                     <li>
-                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                        <a href="{{ site.baseurl }}/works/">作品集</a>
                     </li>
-                    {% endif %}{% endfor %}
+                    <li>
+                        <a href="{{ site.baseurl }}/blog.html">博客</a>
+                    </li>
+                    <li>
+                        <a href="{{ site.baseurl }}/about.html">关于</a>
+                    </li>
                 </ul>
             </div>
         </div>
