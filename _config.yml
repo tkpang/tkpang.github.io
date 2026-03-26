@@ -1,17 +1,17 @@
 # Site settings
-title: TK Works
-SEOTitle: TK Works | 作品展示与创作记录
+title: AgentLab
+SEOTitle: AgentLab | 多Agent协作与AI交付系统
 header-img: img/post-bg-home.jpg
 email: h@hhhh.fun
-description: "TK Works - 作品展示与创作记录平台"
-keyword: "TK Works, 演员, 短剧, 短视频, 作品集, Portfolio"
+description: "AgentLab（my-paperclip）- 多Agent协作、任务编排、Runner跨平台执行与团队交付管理"
+keyword: "AgentLab, 多Agent, AI团队, 任务编排, Codex, Claude, Runner"
 url: "https://hhhh.fun"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 # github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "HHHH, it's FUN! 作品展示 | 创作记录"
+sidebar-about-description: "AgentLab - 把 AI 工具升级为可落地的协作团队"
 sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 

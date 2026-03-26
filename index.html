@@ -1,127 +1,860 @@
----
-layout: page
-description: "作品展示 | 创作记录"
----
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentLab | 把 AI 团队真正跑起来</title>
+  <meta name="description" content="AgentLab（my-paperclip）是多 Agent 协作系统：任务分发、实时看板、跨平台 Runner、模型管理与团队权限一体化。">
+  <meta name="theme-color" content="#0b1021">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070d1f;
+      --surface: #0d1732;
+      --surface-soft: rgba(14, 29, 61, 0.76);
+      --text: #eff4ff;
+      --text-dim: #b7c3df;
+      --line: rgba(166, 188, 235, 0.24);
+      --teal: #14c9c7;
+      --teal-strong: #08a6af;
+      --amber: #ff9f50;
+      --amber-strong: #ff7b27;
+      --lime: #9be863;
+      --radius: 20px;
+      --shadow: 0 24px 70px rgba(4, 10, 24, 0.48);
+    }
 
-<!-- 引入作品集样式 -->
-<link rel="stylesheet" href="{{ '/css/works.css' | prepend: site.baseurl }}">
+    * {
+      box-sizing: border-box;
+    }
 
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
-        <h1>TK Works</h1>
-        <h2 style="font-size: 28px; margin: 20px 0; opacity: 0.95; font-weight: 600;">HHHH, it's FUN!</h2>
-        <p style="font-size: 18px; margin-bottom: 12px;">精彩作品 | 创作记录 | 不断更新</p>
-        <p style="font-size: 16px; opacity: 0.9; margin-bottom: 32px;">访问 <strong>hhhh.fun</strong> 探索更多精彩内容</p>
-        <a href="/works/" class="btn btn-lg btn-default">查看所有作品</a>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Sora", "Noto Sans SC", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(75px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 360px;
+      height: 360px;
+      background: rgba(20, 201, 199, 0.24);
+      top: -100px;
+      left: -120px;
+    }
+
+    body::after {
+      width: 420px;
+      height: 420px;
+      background: rgba(255, 159, 80, 0.22);
+      bottom: -180px;
+      right: -120px;
+    }
+
+    .mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 2px 2px, rgba(151, 175, 227, 0.16) 1px, transparent 0);
+      background-size: 30px 30px;
+      opacity: 0.35;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+    }
+
+    .container {
+      width: min(1140px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 9;
+      backdrop-filter: blur(12px);
+      background: rgba(7, 13, 31, 0.64);
+      border-bottom: 1px solid rgba(167, 186, 235, 0.2);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(130deg, var(--teal), #5de6ca);
+      color: #041123;
+      font-weight: 900;
+      box-shadow: 0 10px 28px rgba(20, 201, 199, 0.36);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: #fff;
+    }
+
+    .nav .nav-cta {
+      padding: 9px 14px;
+      border-radius: 12px;
+      color: #08131f;
+      background: linear-gradient(135deg, #9be863, var(--teal));
+      font-weight: 700;
+      box-shadow: 0 12px 26px rgba(20, 201, 199, 0.34);
+    }
+
+    .hero {
+      padding: 82px 0 48px;
+      display: grid;
+      gap: 34px;
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #092232;
+      background: linear-gradient(120deg, #9be863, #d7f694);
+      border-radius: 999px;
+      padding: 6px 12px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(34px, 6.4vw, 56px);
+      line-height: 1.04;
+      letter-spacing: -0.9px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: clamp(16px, 2.6vw, 19px);
+      line-height: 1.68;
+      max-width: 640px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(140deg, var(--amber), var(--amber-strong));
+      color: #1f0802;
+      box-shadow: 0 14px 36px rgba(255, 123, 39, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(24, 43, 84, 0.7);
+      border-color: rgba(166, 188, 235, 0.3);
+      color: var(--text);
+    }
+
+    .hero-points {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 0;
+      display: grid;
+      gap: 11px;
+    }
+
+    .hero-points li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #d7e2f8;
+      font-size: 15px;
+    }
+
+    .hero-points li::before {
+      content: "●";
+      color: var(--lime);
+      font-size: 12px;
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(27, 48, 92, 0.92), rgba(9, 19, 42, 0.98));
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(137, 166, 229, 0.34);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(20, 201, 199, 0.08), transparent 35%, rgba(255, 159, 80, 0.08));
+      pointer-events: none;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #d8e4ff;
+    }
+
+    .panel-live {
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(155, 232, 99, 0.2);
+      color: #ccffab;
+      border: 1px solid rgba(155, 232, 99, 0.35);
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin-bottom: 12px;
+    }
+
+    .mini-stat {
+      border-radius: 13px;
+      background: rgba(8, 16, 38, 0.54);
+      border: 1px solid rgba(145, 168, 221, 0.26);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 19px;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .mini-stat span {
+      font-size: 11px;
+      color: #9fb2db;
+    }
+
+    .task-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .task-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(10, 21, 47, 0.72);
+      border: 1px solid rgba(141, 164, 220, 0.24);
+      font-size: 13px;
+      color: #d7e5ff;
+    }
+
+    .task-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #36e9be;
+      box-shadow: 0 0 0 0 rgba(54, 233, 190, 0.6);
+      animation: pulse 2.4s infinite;
+    }
+
+    .task-item .meta {
+      color: #9fb2db;
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 28px 0 22px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: clamp(26px, 4.7vw, 38px);
+      letter-spacing: -0.6px;
+    }
+
+    .section-desc {
+      margin: 0;
+      color: var(--text-dim);
+      line-height: 1.68;
+      max-width: 740px;
+    }
+
+    .fit-grid {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .fit-card {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      padding: 16px;
+    }
+
+    .fit-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .fit-card p {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .feature-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(21, 37, 75, 0.9), rgba(10, 22, 45, 0.9));
+      padding: 18px;
+      min-height: 188px;
+      transition: transform 0.24s ease, border-color 0.24s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(155, 232, 99, 0.35);
+    }
+
+    .feature-card strong {
+      font-size: 16px;
+      display: block;
+      margin: 8px 0;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: #b7c7e7;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      font-size: 18px;
+      background: rgba(155, 232, 99, 0.15);
+      border: 1px solid rgba(155, 232, 99, 0.32);
+    }
+
+    .timeline {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .step {
+      position: relative;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: rgba(10, 24, 51, 0.84);
+    }
+
+    .step .num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--teal), #79f8de);
+      color: #072638;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .step p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.63;
+      color: var(--text-dim);
+    }
+
+    .pricing {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .plan {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(15, 28, 58, 0.94), rgba(8, 17, 36, 0.96));
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .plan.featured {
+      border-color: rgba(255, 159, 80, 0.5);
+      box-shadow: 0 15px 38px rgba(255, 123, 39, 0.18);
+    }
+
+    .plan .tag {
+      width: fit-content;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 999px;
+      color: #10231e;
+      background: #a7f5c0;
+    }
+
+    .plan h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .plan .price {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+
+    .plan .price small {
+      font-size: 14px;
+      color: var(--text-dim);
+      font-weight: 500;
+      margin-left: 3px;
+    }
+
+    .plan ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: #c8d6f4;
+      font-size: 14px;
+    }
+
+    .plan ul li::before {
+      content: "✓";
+      color: #9be863;
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .final {
+      margin: 52px 0 70px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 159, 80, 0.45);
+      background:
+        linear-gradient(135deg, rgba(255, 159, 80, 0.2), rgba(20, 201, 199, 0.14)),
+        rgba(10, 18, 39, 0.88);
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+      align-items: center;
+      grid-template-columns: 1.2fr auto;
+    }
+
+    .final h2 {
+      margin: 0;
+      font-size: clamp(24px, 4.2vw, 36px);
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+    }
+
+    .final p {
+      margin: 8px 0 0;
+      color: #d2dcf3;
+      line-height: 1.64;
+    }
+
+    footer {
+      padding: 0 0 30px;
+      text-align: center;
+      color: #8396bc;
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: reveal 0.72s forwards;
+      animation-timing-function: cubic-bezier(.2,.7,.3,1);
+    }
+
+    .d1 { animation-delay: 0.08s; }
+    .d2 { animation-delay: 0.16s; }
+    .d3 { animation-delay: 0.24s; }
+    .d4 { animation-delay: 0.32s; }
+    .d5 { animation-delay: 0.4s; }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(54, 233, 190, 0.55); }
+      80% { box-shadow: 0 0 0 8px rgba(54, 233, 190, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(54, 233, 190, 0); }
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .timeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .pricing {
+        grid-template-columns: 1fr;
+      }
+      .final {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: 64px;
+      }
+      .nav a {
+        font-size: 13px;
+      }
+      .container {
+        width: min(1140px, calc(100% - 28px));
+      }
+      .fit-grid,
+      .feature-grid,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-badge">A</span>
+        <span>AgentLab</span>
+      </a>
+      <nav class="nav">
+        <a href="#features">能力</a>
+        <a href="#workflow">流程</a>
+        <a href="#pricing">方案</a>
+        <a href="https://github.com/tkpang/AgentLab" target="_blank" rel="noopener">GitHub</a>
+        <a class="nav-cta" href="mailto:h@hhhh.fun?subject=AgentLab%20%E5%92%A8%E8%AF%A2">预约演示</a>
+      </nav>
     </div>
-</section>
+  </header>
 
-<!-- Featured Works Section -->
-<section class="featured-works">
-    <div class="container">
-        <h2>精选作品</h2>
-        <div class="featured-works-grid">
-            <!-- 获取所有featured作品 -->
-            {% assign all_works = "" | split: "" %}
-            {% for actor in site.actors %}
-                {% if actor.featured %}
-                    {% assign all_works = all_works | push: actor %}
-                {% endif %}
-            {% endfor %}
-            {% for drama in site.dramas %}
-                {% if drama.featured %}
-                    {% assign all_works = all_works | push: drama %}
-                {% endif %}
-            {% endfor %}
-            {% for video in site.videos %}
-                {% if video.featured %}
-                    {% assign all_works = all_works | push: video %}
-                {% endif %}
-            {% endfor %}
-
-            <!-- 显示featured作品（最多6个） -->
-            {% for work in all_works limit:6 %}
-            <div class="work-card fade-in">
-                <div class="work-card-header category-{{ work.category }}">
-                    <img src="{{ work.cover }}" alt="{{ work.title }}" class="work-card-image" loading="lazy">
-                    <div class="work-card-overlay">
-                        <a href="{{ work.url }}" class="work-card-link">查看详情</a>
-                    </div>
-                    <span class="work-category-badge category-{{ work.category }}">
-                        {% if work.category == 'actor' %}演员
-                        {% elsif work.category == 'drama' %}短剧
-                        {% elsif work.category == 'video' %}短视频
-                        {% endif %}
-                    </span>
-                </div>
-                <div class="work-card-body">
-                    <h3 class="work-card-title">{{ work.title }}</h3>
-                    <p class="work-card-description">{{ work.description }}</p>
-                    <div class="work-card-meta">
-                        {% if work.category == 'actor' and work.hometown %}
-                            <span class="meta-badge">{{ work.hometown }}</span>
-                        {% elsif work.category == 'drama' and work.episode_count %}
-                            <span class="meta-badge">{{ work.episode_count }}集</span>
-                        {% elsif work.category == 'video' and work.duration %}
-                            <span class="meta-badge">{{ work.duration }}秒</span>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-
-            <!-- 如果没有featured作品，显示提示 -->
-            {% if all_works.size == 0 %}
-            <div class="col-lg-12">
-                <p style="text-align: center; color: #666; padding: 40px 0;">
-                    暂无作品展示，敬请期待...
-                </p>
-            </div>
-            {% endif %}
+  <main>
+    <section class="container hero" id="top">
+      <div class="reveal d1">
+        <p class="eyebrow">AI Team Orchestration</p>
+        <h1>把一个人，升级成一支可落地的 AI 团队</h1>
+        <p>AgentLab（my-paperclip）是面向真实业务交付的多 Agent 协作系统。你可以在一个工作台里分派任务、跟踪执行、管理模型成本，并通过跨平台 Runner 在自己的机器或环境里稳定运行。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:h@hhhh.fun?subject=AgentLab%20%E8%B4%AD%E4%B9%B0%E5%92%A8%E8%AF%A2">获取报价与购买方案</a>
+          <a class="btn btn-secondary" href="https://github.com/tkpang/AgentLab" target="_blank" rel="noopener">查看项目地址</a>
         </div>
+        <ul class="hero-points">
+          <li>支持 Codex / Claude Code 多模型与多角色协作</li>
+          <li>内置 Issue 流程、Live Feed、Inbox 与团队权限管理</li>
+          <li>Runner 支持 Linux / Windows，一键安装与启动</li>
+        </ul>
+      </div>
 
-        <div style="text-align: center; margin-top: 32px;">
-            <a href="/works/" class="btn btn-primary btn-lg">查看更多作品 →</a>
+      <aside class="hero-panel reveal d2" aria-label="控制台预览">
+        <div class="panel-head">
+          <strong>Live Company Board</strong>
+          <span class="panel-live">ONLINE</span>
         </div>
-    </div>
-</section>
-
-<!-- Latest Posts Section -->
-<section style="padding: 60px 0; background: #ffffff;">
-    <div class="container">
-        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 40px; color: #1f2937;">
-            最新更新
-        </h2>
-
-        <!-- 文章列表 -->
-        {% for post in site.posts limit:5 %}
-        <div class="post-preview">
-            <a href="{{ post.url | prepend: site.baseurl }}">
-                <h3 class="post-title" style="font-size: 24px; margin-bottom: 8px;">
-                    {{ post.title }}
-                </h3>
-                {% if post.subtitle %}
-                <h4 class="post-subtitle" style="font-size: 18px; color: #6b7280; margin-bottom: 12px;">
-                    {{ post.subtitle }}
-                </h4>
-                {% endif %}
-                <div class="post-content-preview" style="color: #6b7280; line-height: 1.6;">
-                    {{ post.content | strip_html | truncate:200 }}
-                </div>
-            </a>
-            <p class="post-meta" style="margin-top: 12px; color: #9ca3af;">
-                发布于 {{ post.date | date: "%Y年%m月%d日" }}
-                {% if post.author %} · 作者: {{ post.author }}{% endif %}
-            </p>
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <strong>8</strong>
+            <span>Active Agents</span>
+          </div>
+          <div class="mini-stat">
+            <strong>23</strong>
+            <span>Open Issues</span>
+          </div>
+          <div class="mini-stat">
+            <strong>6</strong>
+            <span>Done Today</span>
+          </div>
         </div>
-        <hr>
-        {% endfor %}
-
-        <div style="text-align: center; margin-top: 32px;">
-            <a href="/blog.html" class="btn btn-default btn-lg">查看所有文章 →</a>
+        <div class="task-list">
+          <div class="task-item">
+            <span class="task-dot"></span>
+            <span>CODEX Expert 正在回归验证支付流程</span>
+            <span class="meta">进行中</span>
+          </div>
+          <div class="task-item">
+            <span class="task-dot"></span>
+            <span>SONNET Mage 完成缓存层重构并提交日志</span>
+            <span class="meta">已完成</span>
+          </div>
+          <div class="task-item">
+            <span class="task-dot"></span>
+            <span>Strategic Commander 正在拆解版本里程碑</span>
+            <span class="meta">进行中</span>
+          </div>
         </div>
-    </div>
-</section>
+      </aside>
+    </section>
 
-<script src="{{ '/js/works.js' | prepend: site.baseurl }}"></script>
+    <section class="section">
+      <div class="container reveal d2">
+        <h2 class="section-title">不只是“聊天式 AI”，而是“可管理的 AI 生产系统”</h2>
+        <p class="section-desc">如果你已经在用 AI 写代码、做分析、跑任务，你会很快遇到同一个瓶颈：任务散、上下文丢、执行不可控。AgentLab 把这些碎片流程整合成可持续复用的一套工作系统。</p>
+        <div class="fit-grid">
+          <article class="fit-card">
+            <h3>适合谁</h3>
+            <p>创业者、小团队、技术管理者、外包与交付团队。尤其适合“需求多、节奏快、又不想招太多人”的场景。</p>
+          </article>
+          <article class="fit-card">
+            <h3>你会得到什么</h3>
+            <p>更稳定的交付节奏、更清晰的任务状态、更可控的模型成本，以及可以持续复用的 AI 团队作业方式。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2 class="section-title reveal d2">核心能力</h2>
+        <div class="feature-grid">
+          <article class="feature-card reveal d1">
+            <span class="feature-icon">🤖</span>
+            <strong>多 Agent 编排</strong>
+            <p>按角色招聘 Agent（工程、设计、分析、管理），支持不同模型与推理强度，协同完成复杂任务。</p>
+          </article>
+          <article class="feature-card reveal d2">
+            <span class="feature-icon">📋</span>
+            <strong>Issue 任务流</strong>
+            <p>任务拆分、状态流转、优先级与指派一体化管理，团队进展一眼可见，不再靠口头同步。</p>
+          </article>
+          <article class="feature-card reveal d3">
+            <span class="feature-icon">⚡</span>
+            <strong>实时动态</strong>
+            <p>WebSocket 实时推送 Agent 与任务事件，Dashboard、Live Feed、Inbox 同步更新，减少等待和沟通成本。</p>
+          </article>
+          <article class="feature-card reveal d2">
+            <span class="feature-icon">🧩</span>
+            <strong>模型与凭证管理</strong>
+            <p>支持 Codex / Claude 配置、凭证档案、运行模式检查与健康检测，让环境可用性可视化。</p>
+          </article>
+          <article class="feature-card reveal d3">
+            <span class="feature-icon">🖥️</span>
+            <strong>跨平台 Runner</strong>
+            <p>Runner 支持 Ubuntu 与 Windows，提供脚本与 GUI 安装方式，适合不同熟练度成员快速接入。</p>
+          </article>
+          <article class="feature-card reveal d4">
+            <span class="feature-icon">🏢</span>
+            <strong>团队与权限</strong>
+            <p>公司空间、成员权限、邀请码与日志审计完整可用，帮助你从个人效率升级到组织效率。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container reveal d3">
+        <h2 class="section-title">4 步上线你的 AI 交付体系</h2>
+        <div class="timeline">
+          <article class="step">
+            <span class="num">01</span>
+            <strong>需求盘点</strong>
+            <p>先梳理你当前的核心业务流程和重复性工作，明确 AI 团队要解决的第一批任务。</p>
+          </article>
+          <article class="step">
+            <span class="num">02</span>
+            <strong>角色配置</strong>
+            <p>按场景建立 Agent 角色模板，分配模型能力、预算与执行环境，形成可复用“编制”。</p>
+          </article>
+          <article class="step">
+            <span class="num">03</span>
+            <strong>运行联调</strong>
+            <p>部署 Runner，打通系统后端与执行端；通过 Dashboard 与日志校验状态与稳定性。</p>
+          </article>
+          <article class="step">
+            <span class="num">04</span>
+            <strong>持续提效</strong>
+            <p>基于任务完成率、耗时和成本数据持续优化，让你的 AI 团队越跑越快、越跑越稳。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <h2 class="section-title reveal d3">购买方案</h2>
+        <p class="section-desc reveal d4">按你的团队规模和交付节奏，提供从轻量试点到企业级落地的不同方案。支持咨询后定制。</p>
+        <div class="pricing">
+          <article class="plan reveal d2">
+            <span class="tag">入门试点</span>
+            <h3>Starter</h3>
+            <div class="price">¥2,999<small>/月起</small></div>
+            <ul>
+              <li>单团队部署与基础配置</li>
+              <li>核心任务流 + Dashboard</li>
+              <li>标准技术支持</li>
+            </ul>
+            <a class="btn btn-secondary" href="mailto:h@hhhh.fun?subject=AgentLab%20Starter%20%E5%92%A8%E8%AF%A2">咨询 Starter</a>
+          </article>
+          <article class="plan featured reveal d3">
+            <span class="tag">推荐</span>
+            <h3>Growth</h3>
+            <div class="price">¥7,999<small>/月起</small></div>
+            <ul>
+              <li>多角色 Agent 模板与训练</li>
+              <li>Runner 多环境接入与优化</li>
+              <li>流程调优与交付陪跑</li>
+            </ul>
+            <a class="btn btn-primary" href="mailto:h@hhhh.fun?subject=AgentLab%20Growth%20%E8%B4%AD%E4%B9%B0%E5%92%A8%E8%AF%A2">优先购买 Growth</a>
+          </article>
+          <article class="plan reveal d4">
+            <span class="tag">企业定制</span>
+            <h3>Enterprise</h3>
+            <div class="price">定制报价<small>/按需求</small></div>
+            <ul>
+              <li>多团队权限体系与审计</li>
+              <li>私有化部署与安全加固</li>
+              <li>专属顾问与 SLA 保障</li>
+            </ul>
+            <a class="btn btn-secondary" href="mailto:h@hhhh.fun?subject=AgentLab%20Enterprise%20%E5%92%A8%E8%AF%A2">联系定制方案</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container final reveal d5" id="contact">
+      <div>
+        <h2>现在就把 AI 从“单点工具”，升级为“可规模化团队”</h2>
+        <p>发送需求到 <strong>h@hhhh.fun</strong>，我会基于你的业务场景给出落地方案、实施周期和投入预估。</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:h@hhhh.fun?subject=AgentLab%20%E6%BC%94%E7%A4%BA%E9%A2%84%E7%BA%A6">预约 1v1 演示</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 AgentLab / HHHH.FUN · Powered by TK Pang
+  </footer>
+</body>
+</html>

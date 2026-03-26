@@ -1,25 +1,86 @@
----
-layout: default
-description: "\  你寻找的页面并不存在  /
-header-img: "img/post-bg-home.jpg"
-permalink: /404.html
----
-
-
-<!-- Page Header -->
-<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div class="site-heading" id="tag-heading">
-					<h1>404</h1>
-					<span class="subheading">{{ page.description }}</span>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
-
-<script>
-	document.body.classList.add('page-fullscreen');
-</script>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面不存在 | AgentLab</title>
+  <meta name="theme-color" content="#0b1021">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07102b;
+      --line: rgba(165, 186, 235, 0.25);
+      --text: #edf3ff;
+      --muted: #b9c8e7;
+      --accent: #ff9f50;
+      --accent-strong: #ff7b27;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: radial-gradient(circle at 15% -20%, rgba(20, 201, 199, 0.26), transparent 42%), var(--bg);
+      color: var(--text);
+      font-family: "Sora", "Noto Sans SC", sans-serif;
+    }
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: min(620px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 34px;
+      background: linear-gradient(180deg, rgba(17, 33, 74, 0.92), rgba(10, 21, 50, 0.96));
+      box-shadow: 0 24px 60px rgba(4, 10, 24, 0.45);
+      text-align: center;
+    }
+    .code {
+      margin: 0;
+      font-size: clamp(52px, 12vw, 92px);
+      letter-spacing: -2px;
+      line-height: 1;
+      font-weight: 800;
+      background: linear-gradient(140deg, var(--accent), var(--accent-strong));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(24px, 6vw, 36px);
+      letter-spacing: -0.4px;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #1c0801;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <p class="code">404</p>
+    <h1>这个页面已经下线了</h1>
+    <p>你访问的是旧链接。网站已升级为 AgentLab 产品介绍页，返回首页即可查看最新内容与购买方案。</p>
+    <a class="btn" href="/">返回首页</a>
+  </main>
+</body>
+</html>

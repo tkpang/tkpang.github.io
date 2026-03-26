@@ -1,99 +1,13 @@
----
-layout: page
-title: "作品集"
-description: "我的所有作品展示"
-header-img: "img/post-bg-home.jpg"
----
-
-<!-- 引入作品集样式 -->
-<link rel="stylesheet" href="{{ '/css/works.css' | prepend: site.baseurl }}">
-
-<!-- 筛选导航 -->
-<div class="works-filter">
-    <div class="filter-tags">
-        <button class="filter-tag active" data-filter="all">全部作品</button>
-        <button class="filter-tag" data-filter="actor">演员</button>
-        <button class="filter-tag" data-filter="drama">短剧</button>
-        <button class="filter-tag" data-filter="video">短视频</button>
-    </div>
-</div>
-
-<!-- 作品网格 -->
-<div class="works-grid">
-    <!-- 合并所有作品 -->
-    {% assign all_works = "" | split: "" %}
-    {% for actor in site.actors %}
-        {% assign all_works = all_works | push: actor %}
-    {% endfor %}
-    {% for drama in site.dramas %}
-        {% assign all_works = all_works | push: drama %}
-    {% endfor %}
-    {% for video in site.videos %}
-        {% assign all_works = all_works | push: video %}
-    {% endfor %}
-
-    <!-- 按order排序（如果没有order则放在后面） -->
-    {% assign sorted_works = all_works | sort: "order" %}
-
-    <!-- 显示所有作品 -->
-    {% for work in sorted_works %}
-    <div class="work-card" data-category="{{ work.category }}">
-        <div class="work-card-header category-{{ work.category }}">
-            <img src="{{ work.cover }}" alt="{{ work.title }}" class="work-card-image" loading="lazy">
-            <div class="work-card-overlay">
-                <a href="{{ work.url }}" class="work-card-link">查看详情</a>
-            </div>
-            <span class="work-category-badge category-{{ work.category }}">
-                {% if work.category == 'actor' %}演员
-                {% elsif work.category == 'drama' %}短剧
-                {% elsif work.category == 'video' %}短视频
-                {% endif %}
-            </span>
-        </div>
-        <div class="work-card-body">
-            <h3 class="work-card-title">{{ work.title }}</h3>
-            <p class="work-card-description">{{ work.description }}</p>
-            <div class="work-card-meta">
-                {% if work.category == 'actor' %}
-                    {% if work.height %}
-                    <span class="meta-badge">身高 {{ work.height }}cm</span>
-                    {% endif %}
-                    {% if work.hometown %}
-                    <span class="meta-badge">{{ work.hometown }}</span>
-                    {% endif %}
-                {% elsif work.category == 'drama' %}
-                    {% if work.episode_count %}
-                    <span class="meta-badge">{{ work.episode_count }}集</span>
-                    {% endif %}
-                    {% if work.status %}
-                    <span class="meta-badge">{{ work.status }}</span>
-                    {% endif %}
-                    {% if work.douban_rating %}
-                    <span class="meta-badge" style="background: #fef3c7; color: #d97706;">
-                        豆瓣 {{ work.douban_rating }}分
-                    </span>
-                    {% endif %}
-                {% elsif work.category == 'video' %}
-                    {% if work.duration %}
-                    <span class="meta-badge">{{ work.duration }}秒</span>
-                    {% endif %}
-                    {% if work.view_count %}
-                    <span class="meta-badge">{{ work.view_count }}次播放</span>
-                    {% endif %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-
-    <!-- 如果没有作品，显示提示 -->
-    {% if all_works.size == 0 %}
-    <div style="grid-column: 1 / -1; text-align: center; padding: 80px 20px;">
-        <h3 style="color: #6b7280; font-size: 20px;">暂无作品展示</h3>
-        <p style="color: #9ca3af; margin-top: 12px;">精彩内容即将上线，敬请期待...</p>
-    </div>
-    {% endif %}
-</div>
-
-<!-- 引入交互脚本 -->
-<script src="{{ '/js/works.js' | prepend: site.baseurl }}"></script>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0;url=/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面已迁移 | AgentLab</title>
+</head>
+<body>
+  <p>页面已迁移，正在跳转到 <a href="/">AgentLab 首页</a>...</p>
+  <script>window.location.replace('/');</script>
+</body>
+</html>

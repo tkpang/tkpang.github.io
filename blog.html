@@ -1,37 +1,13 @@
----
-layout: page
-title: "博客"
-description: "创作记录与更新日志"
-header-img: "img/post-bg-home.jpg"
----
-
-{% for post in site.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
-        </div>
-    </a>
-    <p class="post-meta">
-        发布于 {{ post.date | date: "%Y年%m月%d日" }}
-        {% if post.author %} · 作者: {{ post.author }}{% endif %}
-    </p>
-</div>
-<hr>
-{% endfor %}
-
-<!-- 如果没有文章 -->
-{% if site.posts.size == 0 %}
-<div style="text-align: center; padding: 80px 20px;">
-    <h3 style="color: #6b7280; font-size: 20px;">暂无文章</h3>
-    <p style="color: #9ca3af; margin-top: 12px;">敬请期待更新...</p>
-</div>
-{% endif %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0;url=/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面已迁移 | AgentLab</title>
+</head>
+<body>
+  <p>页面已迁移，正在跳转到 <a href="/">AgentLab 首页</a>...</p>
+  <script>window.location.replace('/');</script>
+</body>
+</html>
