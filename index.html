@@ -44,8 +44,9 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow: hidden;
-    display: grid;
-    grid-template-rows: 1fr auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
     min-height: 100svh;
   }
@@ -62,7 +63,6 @@
   }
 
   .stage {
-    grid-row: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,43 +120,10 @@
     100% { opacity: 0; transform: translateY(-0.28em) scale(0.985); filter: blur(2px); }
   }
 
-  .footer {
-    grid-row: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 22px;
-    padding: 0 0 calc(22px + env(safe-area-inset-bottom));
-  }
-
-  .hint {
-    font-size: 0.84rem;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    opacity: 0;
-    animation: hintIn 900ms ease 1100ms forwards;
-  }
-
-  /* iPhone-style home indicator */
-  .home-indicator {
-    width: 134px;
-    height: 5px;
-    border-radius: 999px;
-    background: var(--indicator);
-    opacity: 0;
-    animation: hintIn 900ms ease 1400ms forwards;
-  }
-
-  @keyframes hintIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .greeting { transition: opacity 500ms ease; clip-path: none !important; }
     .greeting.writing, .greeting.leaving { animation: none; }
     .greeting.rtl { direction: rtl; }
-    .hint, .home-indicator { animation: none; opacity: 1; }
   }
 </style>
 </head>
@@ -166,11 +133,6 @@
   <main class="stage">
     <span class="greeting script" id="greeting" aria-hidden="true">hello</span>
   </main>
-
-  <footer class="footer">
-    <span class="hint" id="hint">向上轻扫以继续</span>
-    <div class="home-indicator" aria-hidden="true"></div>
-  </footer>
 
   <script>
     (function () {
